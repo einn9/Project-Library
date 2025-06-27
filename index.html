@@ -3,10 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Library</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css"> 
 </head>
 <body>
-    
-        <script src="script.js"></script>
+    <p class="intro">Welcome to the library app. Please fill in the form to add a new book in!</p>
+    <table>
+        <thead>
+            <tr>
+               <th>Book</th>
+               <th>Author</th>
+               <th>Pages</th>
+               <th>Read Status</th> 
+               <th>ID</th>
+               <th>Remove</th>
+            </tr>
+        </thead>
+        <tbody id="table-body-id">
+            <tr id="first-book">
+                <th class="firstBookName"></th>
+                <td class="firstAuthorName"></td>
+                <td class="firstPages"></td>
+                <td class="firstReadStatus"></td>
+                <td class="firstCryptoID"></td>
+                <td class="removeElement formButton"><button id="remove-button"></button></td>
+            </tr>
+        </tbody>
+    </table>
+    <div id="library-loop"></div>
+
+    <dialog id="form-dialog">
+        <button autofocus id="dialogOpenButton">Close</button>
+        <p class="detailFill">Please fill in the details of the book here!</p>
+        <form action="" method="post" id="new-book-signup" class="signupForm">
+            <div class="form-controls">
+                    <label for="book-name" id="book-name" class="bookname-label">Book Name</label>
+                    <input type="book-name" id="book-name" class="bookname-input" name="book-name" required>
+                    <label for="author" id="author" class="author-label">Author</label>
+                    <input type="author" id="author" class="author-input" name="author">
+                    <label for="pages" id="pages" class="pages-label">Page Count</label>
+                    <input type="pages" id="pages" class="pages-input" name="author">
+                    <label for="haveRead" id="haveRead" class="haveReadlabel">Read Status</label>
+                    <select name="Car" id="statusSelect" class="haveReadLabel pages-input haveRead-input" required>
+                        <option value="" id="optionSelect">Please choose an option</option>
+                        <option class="firstOption theOptions" value="Read">Read</option>
+                        <option class="secondOption theOptions" value="Reading">Reading</option>
+                        <option class ="thirdOption theOptions" value="Unread">Unread</option>
+                    </select>
+            </div>
+            <button type="submit" id="formSubmitButton">Add Book</button>
+        </form>
+    </dialog>
+    <button class="dialogButton">Add New Book</button>
+    <script src="script.js"></script>
 </body>
 </html>
