@@ -62,7 +62,6 @@ closeButton.addEventListener("click", () => {
 });
 
 exampleButton.addEventListener("click", function () {
-        console.log("bruh");
         firstBook.innerHTML = "";
 });
 
