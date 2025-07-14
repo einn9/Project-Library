@@ -12,35 +12,28 @@ const firstBook = document.querySelector("#first-book");
 const exampleButton = document.querySelector("#remove-button");
 const table = document.querySelector("#table-body-id");
 
-// My book array
+myLibrary = [];
 
-const myLibrary = [];
+class Book {
 
-// Book prototype function
-
-function Book() {   
-}
-
-Book.prototype.pushBook = function() {
-    myLibrary.push(nameArray);
-}
-
-addBookToLibrary.prototype = Object.create(Book.prototype)
-Object.setPrototypeOf(addNewBook.prototype, addBookToLibrary.prototype);
-
-// Object function to add books
-
-function addBookToLibrary(name, author, pages, haveRead) {
-    let bookCrypto = self.crypto.randomUUID();
+  constructor(name, author, pages, haveRead) {
     this.name = name
     this.author = author
     this.pages = pages
     this.haveRead = haveRead
-    nameArray = [bookCrypto, this.name, this.author, this.pages, this.haveRead] 
-    this.pushBook() 
-}
+  }
+  pushBook() {
+    let bookCrypto = self.crypto.randomUUID();
+    let nameArray = [bookCrypto, this.name, this.author, this.pages, this.haveRead];
+    myLibrary.push(nameArray);
+    console.log("my library", myLibrary)
+    return nameArray;
+  }
+};
 
-const bookOne = new addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', '295', 'Read')
+const bookOne = new Book('The Hobbit', 'J.R.R. Tolkien', '295', 'Read');
+console.log("book name", bookOne.name);
+bookOne.pushBook(); 
 
 // Initial book loop
 
@@ -52,7 +45,6 @@ for (let i = 0; i < myLibrary.length; i++) {
     firstCryptoID.innerHTML += `${myLibrary[i][0]}`
 }
 
- 
 showButton.addEventListener("click", () => {
   dialog.showModal();
 });
@@ -74,7 +66,8 @@ function createUniqueButton(element) {
     };
 }
 
-let counter = createUniqueButton(1);
+let counter = createUniqueButton(1);  
+
 
 function addNewBook () {
   
@@ -87,7 +80,9 @@ function addNewBook () {
     let pagesName = document.querySelector(".pages-input");
     let haveReadName = document.querySelector(".haveRead-input");
 
-    const bookFour = new addBookToLibrary(bookName.value, authorName.value, pagesName.value, haveReadName.value)
+    let newCrypto = self.crypto.randomUUID();
+    const bookFour = new Book(bookName.value, authorName.value, pagesName.value, haveReadName.value)
+    bookFour.pushBook(); 
 
     const tableBook = document.createElement("tr");
     const tableBookName = document.createElement("td");
@@ -129,17 +124,17 @@ function addNewBook () {
     readStatusSelect.appendChild(selectOptionThree);
 
 
-    let selectForm = document.querySelector('select');
-    let optionChosen = selectForm.children[selectForm.selectedIndex];
+    // Loop until current new book and use the values as textContent
+    for (let i = 0; i < myLibrary.length; i++) {
+      if (i == myLibrary.length - 1) {
+        tableBookName.textContent += `${myLibrary[i][1]}`
+        tableBookAuthor.textContent += `${myLibrary[i][2]}`
+        tableBookPages.textContent += `${myLibrary[i][3]}`
+        tableBookRead.textContent+= `${myLibrary[i][4]}`
+        tableBookCrypto.textContent = `${myLibrary[i][0]}`;
+      }
+    }
 
-    
-    tableBookRead.textContent = optionChosen.text;
-
-    tableBookName.textContent = `${nameArray[1]}`; 
-    tableBookAuthor.textContent = `${nameArray[2]}`;
-    tableBookPages.textContent = `${nameArray[3]}`;
-    tableBookRead.textContent = `${nameArray[4]}`;
-    tableBookCrypto.textContent = `${nameArray[0]}`;
     table.appendChild(tableBook);
     tableBook.appendChild(tableBookName);
     tableBook.appendChild(tableBookAuthor);
@@ -169,17 +164,14 @@ function addNewBook () {
       if (readStatusSelect.value == "optionOne") {
         readStatusSelect.previousSibling.textContent = readStatusSelect.options[readStatusSelect.selectedIndex].text;
         tableBookRead.appendChild(readStatusSelect);
-        optionChosen  = selectForm.children[selectForm.selectedIndex];
       }
       if (readStatusSelect.value == "optionTwo") {
         readStatusSelect.previousSibling.textContent = readStatusSelect.options[readStatusSelect.selectedIndex].text;
         tableBookRead.appendChild(readStatusSelect);
-        optionChosen  = selectForm.children[selectForm.selectedIndex];
       }
       if (readStatusSelect.value == "optionThree") {
         readStatusSelect.previousSibling.textContent = readStatusSelect.options[readStatusSelect.selectedIndex].text;
         tableBookRead.appendChild(readStatusSelect);
-        optionChosen  = selectForm.children[selectForm.selectedIndex];
       }
     });
 
