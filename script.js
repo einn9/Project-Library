@@ -192,6 +192,23 @@ function addNewBook () {
     console.log(bookName.value, authorName.value)
     }
   });
-}
+
+  // Confirm that user is adding a page number input with constraint validation
+  
+  const pageNumber = document.querySelector(".page-validation")
+  console.log("da book name is", pageNumber)
+  pageNumber.addEventListener("input", () => {
+
+    pageNumber.setCustomValidity("");
+    if (!pageNumber.validity.valid) {
+      console.log("THIS CASE")
+      return;
+    }
+
+    if (isNaN(pageNumber.value)) {
+      pageNumber.setCustomValidity("Please enter a page number!");
+    }
+  })
+};
 
 addNewBook();
