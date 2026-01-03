@@ -196,7 +196,7 @@ function addNewBook () {
   // Confirm that user is adding a page number input with constraint validation
   
   const pageNumber = document.querySelector(".page-validation")
-  console.log("da book name is", pageNumber)
+  console.log("the book name is", pageNumber)
   pageNumber.addEventListener("input", () => {
 
     pageNumber.setCustomValidity("");
